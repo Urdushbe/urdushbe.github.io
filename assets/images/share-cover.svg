@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<defs><radialGradient id="b"><stop stop-color="#7a2038"/><stop offset="1" stop-color="#0d0103"/></radialGradient><linearGradient id="g"><stop stop-color="#986719"/><stop offset=".5" stop-color="#ffe9aa"/><stop offset="1" stop-color="#b77c25"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#b)"/><rect x="38" y="38" width="1124" height="554" fill="none" stroke="url(#g)" stroke-width="3"/>
+<text x="600" y="205" text-anchor="middle" fill="#ffe9aa" font-family="Cinzel,Georgia,serif" font-size="74">URDUSHBEK &amp; DURDONA</text>
+<text x="600" y="315" text-anchor="middle" fill="#fff8e8" font-family="Cinzel,Arial,sans-serif" font-size="28" letter-spacing="5">NIKOH TO‘YIGA TAKLIFNOMA</text>
+<text x="600" y="410" text-anchor="middle" fill="#d5aa4c" font-family="Cinzel,Arial,sans-serif" font-size="27">06.08.2026 • 18:00 • JIZZAX</text>
+</svg>

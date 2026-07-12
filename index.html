@@ -1,9 +1,423 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#170205">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Urdushbek va Durdonaning nikoh to‘yiga Royal Palace uslubidagi elektron taklifnoma.">
+  <meta property="og:title" content="Urdushbek & Durdona — Nikoh to‘yiga taklifnoma">
+  <meta property="og:description" content="6-avgust, 2026-yil • Soat 18:00 • “BEK” To‘y va tantanalar maskani">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/share-cover.svg">
+  <title>Urdushbek & Durdona — Royal Palace taklifnoma</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="assets/images/royal-monogram.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
+  <noscript>
+    <div class="noscript">Taklifnomani ochish uchun JavaScript yoqilgan bo‘lishi kerak.</div>
+  </noscript>
 
-<h1>Urdushbek Company</h1>
-<p>My first paragraphffff.</p>
+  <div id="preloader" class="preloader" aria-hidden="true">
+    <div class="preloader-crest">
+      <img src="assets/images/royal-monogram.svg" alt="">
+    </div>
+    <p>Royal taklifnoma tayyorlanmoqda</p>
+  </div>
 
+  <canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
+  <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ROYAL PALACE OPENING SCREEN -->
+  <section id="royalIntro" class="royal-intro" aria-label="Taklifnomani ochish">
+    <img class="palace-background" src="assets/images/royal-palace-bg.svg" alt="">
+    <div class="palace-vignette"></div>
+    <div class="light-rays" aria-hidden="true"></div>
+
+    <div class="royal-border" aria-hidden="true">
+      <img class="corner corner-tl" src="assets/images/gold-corner.svg" alt="">
+      <img class="corner corner-tr" src="assets/images/gold-corner.svg" alt="">
+      <img class="corner corner-bl" src="assets/images/gold-corner.svg" alt="">
+      <img class="corner corner-br" src="assets/images/gold-corner.svg" alt="">
+    </div>
+
+    <div class="intro-content simplified-intro">
+      <div id="envelopeStage" class="envelope-stage">
+        <div class="envelope-ground"></div>
+
+        <div id="royalEnvelope"
+             class="royal-envelope"
+             role="button"
+             tabindex="0"
+             aria-label="Nikoh to‘yi taklifnomasini ochish">
+          <div class="envelope-back"></div>
+
+          <div class="invitation-card" aria-hidden="true">
+            <div class="card-frame"></div>
+            <img src="assets/images/royal-monogram.svg" alt="">
+            <small>NIKOH TO‘YIMIZGA</small>
+            <strong>Urdushbek &amp; Durdona</strong>
+            <span>06 • 08 • 2026</span>
+          </div>
+
+          <div class="envelope-liner"></div>
+          <div class="envelope-left"></div>
+          <div class="envelope-right"></div>
+          <div class="envelope-bottom"></div>
+          <div class="envelope-flap"></div>
+
+          <div class="closed-envelope-label" aria-hidden="true">
+            <img src="assets/images/crown-divider.svg" alt="">
+            <span>NIKOH TO‘YIGA</span>
+            <strong>TAKLIFNOMA</strong>
+          </div>
+
+          <span id="sealButton" class="royal-seal" aria-hidden="true">
+            <span>U <i>&amp;</i> D</span>
+            <em></em>
+          </span>
+
+          <div class="seal-fragments" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+
+        <button id="arrowOpenButton" class="open-arrow" type="button" aria-label="Konvertni ochish">
+          <svg viewBox="0 0 180 190" aria-hidden="true">
+            <defs>
+              <linearGradient id="arrowGold" x1="0" x2="1">
+                <stop offset="0" stop-color="#a87725"/>
+                <stop offset=".48" stop-color="#fff0bc"/>
+                <stop offset="1" stop-color="#c69437"/>
+              </linearGradient>
+              <filter id="arrowGlow">
+                <feGaussianBlur stdDeviation="3.5" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <path class="arrow-trail" d="M26 168 C36 126 73 116 102 121 C137 127 151 97 145 50" />
+            <path class="arrow-head" d="M127 67 L146 42 L158 71" />
+          </svg>
+          <span>OCHISH UCHUN<br>BOSING</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN INVITATION -->
+  <main id="invitation" class="invitation" aria-hidden="true">
+    <section class="hero-section section" id="home">
+      <img class="hero-bg" src="assets/images/royal-palace-bg.svg" alt="">
+      <div class="hero-overlay"></div>
+      <div class="hero-frame"></div>
+
+      <div class="hero-copy" data-reveal="zoom">
+        <img class="hero-crest" src="assets/images/royal-monogram.svg" alt="U va D monogrammasi">
+        <p class="hero-kicker">NIKOH TO‘YIMIZGA TAKLIF ETAMIZ</p>
+        <h2 class="animated-main-title">
+          <span>Urdushbek</span>
+          <b>&amp;</b>
+          <span>Durdona</span>
+        </h2>
+        <div class="hero-meta">
+          <span>06.08.2026</span><i></i><span>18:00</span>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#bismillahSection">
+        <span>Taklifnomani ko‘ring</span><i></i>
+      </a>
+    </section>
+
+    <section class="bismillah-section section paper-section" id="bismillahSection">
+      <img class="section-ornament ornament-left" src="assets/images/gold-botanical.svg" alt="">
+      <img class="section-ornament ornament-right" src="assets/images/gold-botanical.svg" alt="">
+
+      <div class="narrow" data-reveal="rise">
+        <p class="arabic" dir="rtl">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+        <p class="transliteration">Bismillahir rohmanir rohiym</p>
+        <div class="wide-divider"><span></span><img src="assets/images/crown-divider.svg" alt=""><span></span></div>
+        <blockquote>“Ikki qalb, bir taqdir,<br>Alloh yozgan bir umr.”</blockquote>
+      </div>
+    </section>
+
+    <section class="message-section section" id="aboutSection">
+      <div class="paper-grain"></div>
+      <div class="narrow" data-reveal="fade">
+        <p id="guestGreeting" class="guest-greeting">Aziz mehmonimiz!</p>
+        <p>
+          Hayotimizning eng unutilmas va quvonchli kunida sizni aziz mehmonimiz
+          sifatida ko‘rish biz uchun katta baxtdir.
+        </p>
+        <p>
+          Sizni Urdushbek va Durdonaning nikoh to‘yi munosabati bilan
+          yoziladigan baxtli kunimizga taklif etamiz.
+        </p>
+        <p>
+          Ushbu unutilmas oqshomda ezgu tilaklaringiz, duolaringiz va
+          quvonchingiz bilan bizga hamroh bo‘lishingizni chin qalbdan istaymiz.
+        </p>
+        <p class="signature">Hurmat va ehtirom bilan<br><strong>Urdushbek &amp; Durdona</strong></p>
+      </div>
+    </section>
+
+    <section class="date-section section paper-section" id="dateSection">
+      <div class="section-heading" data-reveal="rise">
+        <span>Ushbu sanani qalbingizga yozib qo‘ying</span>
+        <h2>To‘y sanasi</h2>
+      </div>
+
+      <article class="royal-calendar" data-reveal="zoom">
+        <div class="calendar-inner-border"></div>
+        <img class="calendar-icon" src="assets/images/icon-calendar.svg" alt="">
+        <div class="calendar-year">2026</div>
+        <div class="calendar-main">
+          <strong>06</strong>
+          <div>
+            <b>AVGUST</b>
+            <span>PAYSHANBA</span>
+          </div>
+        </div>
+        <div class="calendar-time">SOAT <strong>18:00</strong></div>
+      </article>
+
+      <button id="calendarButton" class="royal-button gold" type="button" data-reveal="rise">
+        <img src="assets/images/icon-calendar.svg" alt="">
+        Taqvimga qo‘shish
+      </button>
+    </section>
+
+    <section class="countdown-section section">
+      <div class="countdown-glow"></div>
+      <div class="section-heading light" data-reveal="rise">
+        <span>Baxtli kunimiz boshlanishiga</span>
+        <h2>Qolgan vaqt</h2>
+      </div>
+
+      <div id="countdown" class="countdown" data-reveal="zoom" aria-live="polite">
+        <div><strong id="days">25</strong><span>Kun</span></div>
+        <div><strong id="hours">00</strong><span>Soat</span></div>
+        <div><strong id="minutes">00</strong><span>Daqiqa</span></div>
+        <div><strong id="seconds">00</strong><span>Soniya</span></div>
+      </div>
+      <p id="countdownMessage" class="countdown-message" hidden></p>
+    </section>
+
+    <section class="details-section section paper-section">
+      <div class="section-heading" data-reveal="rise">
+        <span>Siz uchun muhim ma’lumotlar</span>
+        <h2>To‘y haqida</h2>
+      </div>
+
+      <div class="detail-grid">
+        <article data-reveal="left">
+          <img src="assets/images/icon-calendar.svg" alt="">
+          <span>SANA</span>
+          <strong>6-avgust, 2026-yil</strong>
+        </article>
+
+        <article data-reveal="right">
+          <img src="assets/images/icon-clock.svg" alt="">
+          <span>BOSHLANISH VAQTI</span>
+          <strong>Soat 18:00</strong>
+        </article>
+
+        <article data-reveal="left">
+          <img src="assets/images/icon-location.svg" alt="">
+          <span>MANZIL</span>
+          <strong>“BEK” To‘y va tantanalar maskani</strong>
+          <small>Jizzax shahri, Jizzax viloyati</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="timeline-section section">
+      <div class="section-heading" data-reveal="rise">
+        <span>Unutilmas oqshom</span>
+        <h2>To‘y dasturi</h2>
+      </div>
+      <div id="timeline" class="timeline"></div>
+    </section>
+
+    <section class="venue-section section paper-section" id="venueSection">
+      <div class="section-heading" data-reveal="rise">
+        <span>Sizni go‘zal maskanda kutib qolamiz</span>
+        <h2>Manzil</h2>
+      </div>
+
+      <div class="venue-illustration" data-reveal="zoom">
+        <img src="assets/images/venue-palace.svg" alt="BEK To‘y va tantanalar maskanining ramziy royal tasviri">
+        <div class="venue-light-sweep"></div>
+      </div>
+
+      <div class="venue-copy" data-reveal="rise">
+        <h3>“BEK” To‘y va tantanalar maskani</h3>
+        <p>Jizzax shahri, Jizzax viloyati</p>
+      </div>
+
+      <div class="map-preview" data-reveal="zoom">
+        <div class="map-grid"></div>
+        <div class="road road-one"></div>
+        <div class="road road-two"></div>
+        <div class="road road-three"></div>
+        <div class="premium-pin"><i></i></div>
+        <div class="map-label">“BEK” To‘y va tantanalar maskani</div>
+      </div>
+
+      <a class="royal-button burgundy" href="https://maps.app.goo.gl/f33AMVssJJhMVUZf6?g_st=atm" target="_blank" rel="noopener noreferrer" data-reveal="rise">
+        <img src="assets/images/icon-location.svg" alt="">
+        Xaritada ko‘rish
+      </a>
+    </section>
+
+    <section class="quote-section section">
+      <div class="falling-petals" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="narrow" data-reveal="fade">
+        <blockquote>
+          “Sevgi — bir-biriga qarab turish emas,<br>
+          balki bir yo‘lda, bir maqsad sari birga yurishdir.”
+        </blockquote>
+        <p>Yangi hayot yo‘limizni sizning ezgu tilaklaringiz va duolaringiz bilan boshlashni istaymiz.</p>
+      </div>
+    </section>
+
+    <section class="rsvp-section section paper-section" id="rsvpSection">
+      <div class="section-heading" data-reveal="rise">
+        <span>Bizga oldindan xabar bering</span>
+        <h2>Ishtirokingizni tasdiqlang</h2>
+      </div>
+
+      <p class="rsvp-text" data-reveal="fade">
+        To‘yimizga tayyorgarlik ko‘rishimiz uchun ishtirokingizni
+        oldindan tasdiqlashingizni so‘raymiz.
+      </p>
+
+      <button id="openRsvp" class="rsvp-seal" type="button" data-reveal="zoom">
+        <img src="assets/images/icon-rsvp.svg" alt="">
+        <strong>RSVP</strong>
+        <span>Javob berish</span>
+      </button>
+
+      <p id="savedRsvpNotice" class="saved-notice" hidden>Oldingi javobingiz shu qurilmada saqlangan.</p>
+    </section>
+
+    <section class="share-section section">
+      <div class="section-heading light" data-reveal="rise">
+        <span>Taklifnomani yaqinlaringiz bilan ulashing</span>
+        <h2>Ulashish</h2>
+      </div>
+      <button id="shareButton" class="royal-button outline" type="button" data-reveal="zoom">
+        <img src="assets/images/icon-share.svg" alt="">
+        Taklifnomani ulashish
+      </button>
+      <p id="shareStatus" class="share-status" aria-live="polite"></p>
+    </section>
+
+    <section class="closing-section section">
+      <div class="closing-stars"></div>
+      <img class="closing-crest" src="assets/images/royal-monogram.svg" alt="U va D monogrammasi" data-reveal="zoom">
+      <div data-reveal="rise">
+        <p class="closing-lead">Sizni baxtli kunimizda kutib qolamiz!</p>
+        <h2 class="animated-main-title closing-title">
+          <span>Urdushbek</span><b>&amp;</b><span>Durdona</span>
+        </h2>
+        <p>6-avgust, 2026-yil • Soat 18:00</p>
+        <p>“BEK” To‘y va tantanalar maskani • Jizzax shahri</p>
+        <blockquote>
+          Quvonchimizga sherik bo‘lib, baxtli kunimizga fayz qo‘shishingiz
+          biz uchun katta sharafdir.
+        </blockquote>
+        <small>Sevgi va ehtirom bilan</small>
+      </div>
+    </section>
+  </main>
+
+  <button id="musicToggle" class="music-toggle" type="button" aria-label="Musiqani pauza qilish" hidden>
+    <img src="assets/images/icon-music.svg" alt="">
+    <span id="musicIcon">Ⅱ</span>
+    <i></i><i></i><i></i>
+  </button>
+
+  <audio id="backgroundMusic" preload="metadata" loop>
+    <source src="assets/audio/royal-palace-theme.mp3" type="audio/mpeg">
+    <source src="assets/audio/royal-palace-theme.wav" type="audio/wav">
+  </audio>
+
+  <div id="rsvpModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-sheet">
+      <button id="closeRsvp" class="modal-close" type="button" aria-label="Formani yopish">×</button>
+      <img class="modal-crest" src="assets/images/royal-monogram.svg" alt="">
+      <h2 id="rsvpTitle">Ishtirokingizni tasdiqlang</h2>
+      <p class="modal-note">Javob hozircha faqat shu qurilmada saqlanadi.</p>
+
+      <form id="rsvpForm" novalidate>
+        <label>
+          <span>Ismingiz va familiyangiz *</span>
+          <input id="fullName" name="fullName" type="text" autocomplete="name" maxlength="100" required>
+          <small class="field-error"></small>
+        </label>
+
+        <fieldset>
+          <legend>To‘yga tashrif buyurasizmi? *</legend>
+          <label class="choice"><input type="radio" name="attendance" value="yes" required><span>Ha, mamnuniyat bilan</span></label>
+          <label class="choice"><input type="radio" name="attendance" value="no" required><span>Afsuski, qatnasha olmayman</span></label>
+          <small class="field-error"></small>
+        </fieldset>
+
+        <label>
+          <span>Mehmonlar soni</span>
+          <select id="guestCount" name="guestCount">
+            <option value="1">1 kishi</option>
+            <option value="2">2 kishi</option>
+            <option value="3">3 kishi</option>
+            <option value="4">4 kishi</option>
+            <option value="5">5 kishi</option>
+            <option value="6">6 kishi</option>
+          </select>
+        </label>
+
+        <fieldset>
+          <legend>Siz bilan bolalar ham keladimi?</legend>
+          <label class="choice"><input type="radio" name="children" value="yes"><span>Ha</span></label>
+          <label class="choice"><input type="radio" name="children" value="no" checked><span>Yo‘q</span></label>
+        </fieldset>
+
+        <div id="childrenFields" class="conditional-fields" hidden>
+          <label>
+            <span>Bolalar soni</span>
+            <select name="childrenCount">
+              <option value="1">1 bola</option>
+              <option value="2">2 bola</option>
+              <option value="3">3 bola</option>
+              <option value="4">4 bola</option>
+            </select>
+          </label>
+          <label>
+            <span>Bolalarning ismi yoki yoshi</span>
+            <input name="childrenInfo" type="text" maxlength="150">
+          </label>
+        </div>
+
+        <label>
+          <span>Kelin-kuyov uchun tilagingiz</span>
+          <textarea name="wish" rows="4" maxlength="500" placeholder="Ezgu tilagingizni yozing..."></textarea>
+        </label>
+
+        <button class="royal-button burgundy form-submit" type="submit">Javobni saqlash</button>
+        <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

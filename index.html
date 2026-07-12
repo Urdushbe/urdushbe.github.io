@@ -49,6 +49,10 @@
 
     <div class="intro-content simplified-intro">
       <div id="envelopeStage" class="envelope-stage">
+        <div id="introGuestMessage" class="intro-guest-message" aria-live="polite">
+          <span>HURMATLI MEHMONIMIZ</span>
+          <strong>Ushbu taklifnoma Siz uchun</strong>
+        </div>
         <div class="envelope-ground"></div>
 
         <div id="royalEnvelope"
@@ -88,8 +92,8 @@
           </div>
         </div>
 
-        <button id="arrowOpenButton" class="open-arrow" type="button" aria-label="Konvertni ochish">
-          <svg viewBox="0 0 180 190" aria-hidden="true">
+        <button id="arrowOpenButton" class="open-arrow centered-open-arrow" type="button" aria-label="Konvertni ochish">
+          <svg viewBox="0 0 160 125" aria-hidden="true">
             <defs>
               <linearGradient id="arrowGold" x1="0" x2="1">
                 <stop offset="0" stop-color="#a87725"/>
@@ -101,10 +105,10 @@
                 <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
             </defs>
-            <path class="arrow-trail" d="M26 168 C36 126 73 116 102 121 C137 127 151 97 145 50" />
-            <path class="arrow-head" d="M127 67 L146 42 L158 71" />
+            <path class="arrow-trail" d="M80 108 C80 88 80 68 80 43" />
+            <path class="arrow-head" d="M61 61 L80 36 L99 61" />
           </svg>
-          <span>OCHISH UCHUN<br>BOSING</span>
+          <span>OCHISH UCHUN BOSING</span>
         </button>
       </div>
     </div>
@@ -186,11 +190,6 @@
         </div>
         <div class="calendar-time">SOAT <strong>18:00</strong></div>
       </article>
-
-      <button id="calendarButton" class="royal-button gold" type="button" data-reveal="rise">
-        <img src="assets/images/icon-calendar.svg" alt="">
-        Taqvimga qo‘shish
-      </button>
     </section>
 
     <section class="countdown-section section">
@@ -261,16 +260,25 @@
         <p>Jizzax shahri, Jizzax viloyati</p>
       </div>
 
-      <div class="map-preview" data-reveal="zoom">
-        <div class="map-grid"></div>
-        <div class="road road-one"></div>
-        <div class="road road-two"></div>
-        <div class="road road-three"></div>
-        <div class="premium-pin"><i></i></div>
-        <div class="map-label">“BEK” To‘y va tantanalar maskani</div>
+      <div class="real-map-card" data-reveal="zoom">
+        <div class="real-map-gold-frame" aria-hidden="true"></div>
+        <iframe
+          title="“BEK” To‘y va tantanalar maskani Google xaritasi"
+          src="https://www.google.com/maps?q=%22BEK%22%20To%27y%20va%20tantanalar%20maskani%20Jizzax&output=embed"
+          width="100%"
+          height="330"
+          style="border:0"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
 
-      <a class="royal-button burgundy" href="https://maps.app.goo.gl/f33AMVssJJhMVUZf6?g_st=atm" target="_blank" rel="noopener noreferrer" data-reveal="rise">
+      <p class="map-help-text" data-reveal="fade">
+        Xarita internet orqali yuklanadi. Aniq yo‘nalishni ochish uchun pastdagi tugmani bosing.
+      </p>
+
+      <a class="royal-button burgundy" href="https://maps.app.goo.gl/K7DMrNXLy79T28VB8" target="_blank" rel="noopener noreferrer" data-reveal="rise">
         <img src="assets/images/icon-location.svg" alt="">
         Xaritada ko‘rish
       </a>
@@ -287,38 +295,6 @@
         </blockquote>
         <p>Yangi hayot yo‘limizni sizning ezgu tilaklaringiz va duolaringiz bilan boshlashni istaymiz.</p>
       </div>
-    </section>
-
-    <section class="rsvp-section section paper-section" id="rsvpSection">
-      <div class="section-heading" data-reveal="rise">
-        <span>Bizga oldindan xabar bering</span>
-        <h2>Ishtirokingizni tasdiqlang</h2>
-      </div>
-
-      <p class="rsvp-text" data-reveal="fade">
-        To‘yimizga tayyorgarlik ko‘rishimiz uchun ishtirokingizni
-        oldindan tasdiqlashingizni so‘raymiz.
-      </p>
-
-      <button id="openRsvp" class="rsvp-seal" type="button" data-reveal="zoom">
-        <img src="assets/images/icon-rsvp.svg" alt="">
-        <strong>RSVP</strong>
-        <span>Javob berish</span>
-      </button>
-
-      <p id="savedRsvpNotice" class="saved-notice" hidden>Oldingi javobingiz shu qurilmada saqlangan.</p>
-    </section>
-
-    <section class="share-section section">
-      <div class="section-heading light" data-reveal="rise">
-        <span>Taklifnomani yaqinlaringiz bilan ulashing</span>
-        <h2>Ulashish</h2>
-      </div>
-      <button id="shareButton" class="royal-button outline" type="button" data-reveal="zoom">
-        <img src="assets/images/icon-share.svg" alt="">
-        Taklifnomani ulashish
-      </button>
-      <p id="shareStatus" class="share-status" aria-live="polite"></p>
     </section>
 
     <section class="closing-section section">
@@ -338,6 +314,18 @@
         <small>Sevgi va ehtirom bilan</small>
       </div>
     </section>
+
+    <section class="share-section section">
+      <div class="section-heading light" data-reveal="rise">
+        <span>Taklifnomani yaqinlaringiz bilan ulashing</span>
+        <h2>Ulashish</h2>
+      </div>
+      <button id="shareButton" class="royal-button outline" type="button" data-reveal="zoom">
+        <img src="assets/images/icon-share.svg" alt="">
+        Taklifnomani ulashish
+      </button>
+      <p id="shareStatus" class="share-status" aria-live="polite"></p>
+    </section>
   </main>
 
   <button id="musicToggle" class="music-toggle" type="button" aria-label="Musiqani pauza qilish" hidden>
@@ -350,73 +338,6 @@
     <source src="assets/audio/royal-palace-theme.mp3" type="audio/mpeg">
     <source src="assets/audio/royal-palace-theme.wav" type="audio/wav">
   </audio>
-
-  <div id="rsvpModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle" hidden>
-    <div class="modal-backdrop" data-close-modal></div>
-    <div class="modal-sheet">
-      <button id="closeRsvp" class="modal-close" type="button" aria-label="Formani yopish">×</button>
-      <img class="modal-crest" src="assets/images/royal-monogram.svg" alt="">
-      <h2 id="rsvpTitle">Ishtirokingizni tasdiqlang</h2>
-      <p class="modal-note">Javob hozircha faqat shu qurilmada saqlanadi.</p>
-
-      <form id="rsvpForm" novalidate>
-        <label>
-          <span>Ismingiz va familiyangiz *</span>
-          <input id="fullName" name="fullName" type="text" autocomplete="name" maxlength="100" required>
-          <small class="field-error"></small>
-        </label>
-
-        <fieldset>
-          <legend>To‘yga tashrif buyurasizmi? *</legend>
-          <label class="choice"><input type="radio" name="attendance" value="yes" required><span>Ha, mamnuniyat bilan</span></label>
-          <label class="choice"><input type="radio" name="attendance" value="no" required><span>Afsuski, qatnasha olmayman</span></label>
-          <small class="field-error"></small>
-        </fieldset>
-
-        <label>
-          <span>Mehmonlar soni</span>
-          <select id="guestCount" name="guestCount">
-            <option value="1">1 kishi</option>
-            <option value="2">2 kishi</option>
-            <option value="3">3 kishi</option>
-            <option value="4">4 kishi</option>
-            <option value="5">5 kishi</option>
-            <option value="6">6 kishi</option>
-          </select>
-        </label>
-
-        <fieldset>
-          <legend>Siz bilan bolalar ham keladimi?</legend>
-          <label class="choice"><input type="radio" name="children" value="yes"><span>Ha</span></label>
-          <label class="choice"><input type="radio" name="children" value="no" checked><span>Yo‘q</span></label>
-        </fieldset>
-
-        <div id="childrenFields" class="conditional-fields" hidden>
-          <label>
-            <span>Bolalar soni</span>
-            <select name="childrenCount">
-              <option value="1">1 bola</option>
-              <option value="2">2 bola</option>
-              <option value="3">3 bola</option>
-              <option value="4">4 bola</option>
-            </select>
-          </label>
-          <label>
-            <span>Bolalarning ismi yoki yoshi</span>
-            <input name="childrenInfo" type="text" maxlength="150">
-          </label>
-        </div>
-
-        <label>
-          <span>Kelin-kuyov uchun tilagingiz</span>
-          <textarea name="wish" rows="4" maxlength="500" placeholder="Ezgu tilagingizni yozing..."></textarea>
-        </label>
-
-        <button class="royal-button burgundy form-submit" type="submit">Javobni saqlash</button>
-        <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>

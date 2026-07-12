@@ -43,3 +43,18 @@ MUHR VA ANIMATSIYA TUZATILDI
 - Muhr, konvert, oltin strelka va ramka animatsiyasi kuchaytirildi.
 - Android qurilmadagi “animatsiyalarni kamaytirish” sozlamasi endi
   ushbu intro animatsiyalarini o‘chirib qo‘ymaydi.
+
+
+YAKUNIY O‘ZGARISHLAR
+--------------------
+- Mehmon nomi konvert ochilishidan oldin ko‘rinadi.
+- Konvertni ochish strelkasi konvert ostining aniq markaziga ko‘chirildi.
+- Konvert ochilganda taklifnoma kartasi ancha yuqoriga chiqadi.
+- “Taqvimga qo‘shish” funksiyasi olib tashlandi.
+- RSVP va tilak yozish formasi olib tashlandi.
+- Sabab: GitHub Pages statik hosting bo‘lgani uchun brauzerdan .txt faylga
+  xavfsiz va doimiy yozib bo‘lmaydi.
+- Dekorativ xarita haqiqiy Google Maps iframe bilan almashtirildi.
+- “Xaritada ko‘rish” tugmasi:
+  https://maps.app.goo.gl/K7DMrNXLy79T28VB8
+- Ulashish bo‘limi sahifaning mutlaq eng pastiga ko‘chirildi.

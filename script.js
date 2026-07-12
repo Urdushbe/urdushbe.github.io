@@ -3,9 +3,6 @@
 
   const config = {
     eventISO: "2026-08-06T18:00:00+05:00",
-    venue: "“BEK” To‘y va tantanalar maskani",
-    address: "Jizzax shahri, Jizzax viloyati",
-    mapUrl: "https://maps.app.goo.gl/f33AMVssJJhMVUZf6?g_st=atm",
     timeline: [
       ["17:30", "Mehmonlarni kutib olish"],
       ["18:00", "To‘y tantanasining boshlanishi"],
@@ -24,19 +21,11 @@
   const envelope = $("#royalEnvelope");
   const envelopeStage = $("#envelopeStage");
   const invitation = $("#invitation");
-  const sealButton = $("#sealButton");
   const arrowOpenButton = $("#arrowOpenButton");
   const music = $("#backgroundMusic");
   const musicToggle = $("#musicToggle");
-  const rsvpModal = $("#rsvpModal");
-  const rsvpForm = $("#rsvpForm");
-  const childrenFields = $("#childrenFields");
-  const formStatus = $("#formStatus");
-  const savedRsvpNotice = $("#savedRsvpNotice");
 
   let invitationOpened = false;
-  let lastFocused = null;
-  let latestDays = null;
 
   function init() {
     buildTimeline();
@@ -45,20 +34,19 @@
     initReveal();
     initOpening();
     initMusic();
-    initCalendar();
     initShare();
-    initRsvp();
     initProgress();
     initParticles();
-    restoreRsvp();
 
     window.addEventListener("load", () => {
-      setTimeout(() => preloader.classList.add("hidden"), 260);
+      window.setTimeout(() => preloader.classList.add("hidden"), 260);
     });
   }
 
   function buildTimeline() {
     const timeline = $("#timeline");
+    if (!timeline) return;
+
     timeline.textContent = "";
 
     config.timeline.forEach(([timeText, title], index) => {
@@ -93,8 +81,21 @@
   }
 
   function personalizeGuest() {
-    const guest = sanitize(new URLSearchParams(location.search).get("guest") || "");
-    $("#guestGreeting").textContent = guest ? `Hurmatli ${guest}!` : "Aziz mehmonimiz!";
+    const guest = sanitize(new URLSearchParams(window.location.search).get("guest") || "");
+    const mainGreeting = $("#guestGreeting");
+    const introGuest = $("#introGuestMessage");
+
+    if (mainGreeting) {
+      mainGreeting.textContent = guest ? `Hurmatli ${guest}!` : "Aziz mehmonimiz!";
+    }
+
+    if (introGuest) {
+      const nameLine = introGuest.querySelector("span");
+      const messageLine = introGuest.querySelector("strong");
+
+      nameLine.textContent = guest ? `HURMATLI ${guest.toLocaleUpperCase("uz-UZ")}` : "HURMATLI MEHMONIMIZ";
+      messageLine.textContent = "Ushbu taklifnoma Siz uchun";
+    }
   }
 
   function initOpening() {
@@ -116,15 +117,16 @@
         setMusicState(false);
       }
 
-      setTimeout(() => {
+      window.setTimeout(() => {
         invitation.setAttribute("aria-hidden", "false");
         intro.classList.add("is-gone");
         musicToggle.hidden = false;
         window.scrollTo({ top: 0, behavior: "instant" });
-      }, 2850);
+      }, 3150);
     };
 
     envelope.addEventListener("click", openInvitation);
+
     arrowOpenButton.addEventListener("click", event => {
       event.stopPropagation();
       openInvitation();
@@ -140,16 +142,16 @@
 
   function initCountdown() {
     const target = new Date(config.eventISO).getTime();
-    const introDays = $("#introDays");
 
     function updateNumber(selector, value, pad = true) {
       const element = $(selector);
+      if (!element) return;
+
       const text = pad ? String(value).padStart(2, "0") : String(value);
-
       if (element.textContent === text) return;
-      element.classList.add("flip");
 
-      setTimeout(() => {
+      element.classList.add("flip");
+      window.setTimeout(() => {
         element.textContent = text;
         element.classList.remove("flip");
       }, 125);
@@ -160,13 +162,15 @@
       const difference = target - now;
 
       if (difference <= 0) {
-        $("#countdown").hidden = true;
+        const countdown = $("#countdown");
         const message = $("#countdownMessage");
-        message.hidden = false;
-        message.textContent = now <= target + 6 * 60 * 60 * 1000
-          ? "Bugun bizning baxtli kunimiz!"
-          : "Baxtli kunimiz qalbimizda unutilmas xotira bo‘lib qoldi.";
-        if (introDays) introDays.textContent = "0";
+        if (countdown) countdown.hidden = true;
+        if (message) {
+          message.hidden = false;
+          message.textContent = now <= target + 6 * 60 * 60 * 1000
+            ? "Bugun bizning baxtli kunimiz!"
+            : "Baxtli kunimiz qalbimizda unutilmas xotira bo‘lib qoldi.";
+        }
         return;
       }
 
@@ -175,24 +179,19 @@
       const minutes = Math.floor((difference % 3600000) / 60000);
       const seconds = Math.floor((difference % 60000) / 1000);
 
-      // Kun raqami ataylab padStart ishlatmaydi: 25, 9, 3 ko‘rinishida chiqadi.
-      if (introDays) introDays.textContent = String(days);
+      // Kunlar 025 emas, 25 / 9 / 3 ko‘rinishida chiqadi.
       updateNumber("#days", days, false);
       updateNumber("#hours", hours, true);
       updateNumber("#minutes", minutes, true);
       updateNumber("#seconds", seconds, true);
-
-      latestDays = days;
     }
 
     tick();
-    setInterval(tick, 1000);
+    window.setInterval(tick, 1000);
   }
 
   function initReveal() {
-    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (reducedMotion || !("IntersectionObserver" in window)) {
+    if (!("IntersectionObserver" in window)) {
       $$("[data-reveal]").forEach(element => element.classList.add("visible"));
       return;
     }
@@ -206,11 +205,6 @@
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
 
     $$("[data-reveal]").forEach(element => observer.observe(element));
-
-    const mutationObserver = new MutationObserver(() => {
-      $$("[data-reveal]:not(.visible)").forEach(element => observer.observe(element));
-    });
-    mutationObserver.observe($("#timeline"), { childList: true });
   }
 
   function initMusic() {
@@ -235,195 +229,45 @@
 
   function setMusicState(isPlaying) {
     musicToggle.classList.toggle("paused", !isPlaying);
-    musicToggle.setAttribute("aria-label", isPlaying ? "Musiqani pauza qilish" : "Musiqani ijro etish");
-  }
-
-  function initCalendar() {
-    $("#calendarButton").addEventListener("click", () => {
-      const calendarData = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//Urdushbek Durdona Royal Wedding//UZ",
-        "BEGIN:VEVENT",
-        "UID:urdushbek-durdona-20260806@royal.local",
-        "DTSTAMP:20260712T000000Z",
-        "DTSTART:20260806T130000Z",
-        "DTEND:20260806T180000Z",
-        "SUMMARY:Urdushbek va Durdonaning nikoh to‘yi",
-        `LOCATION:${config.venue}, ${config.address}`,
-        "DESCRIPTION:Nikoh to‘yiga taklifnoma. Boshlanish vaqti 18:00.",
-        "END:VEVENT",
-        "END:VCALENDAR"
-      ].join("\r\n");
-
-      const blob = new Blob([calendarData], { type: "text/calendar;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "Urdushbek_Durdona_toy_sanasi.ics";
-      document.body.append(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-    });
+    musicToggle.setAttribute(
+      "aria-label",
+      isPlaying ? "Musiqani pauza qilish" : "Musiqani ijro etish"
+    );
   }
 
   function initShare() {
+    const button = $("#shareButton");
     const status = $("#shareStatus");
+    if (!button || !status) return;
 
-    $("#shareButton").addEventListener("click", async () => {
+    button.addEventListener("click", async () => {
       const data = {
         title: "Urdushbek & Durdona — Nikoh to‘yiga taklifnoma",
         text: "6-avgust, 2026-yil, soat 18:00. “BEK” To‘y va tantanalar maskani, Jizzax.",
-        url: location.href
+        url: window.location.href
       };
 
       try {
         if (navigator.share) {
           await navigator.share(data);
           status.textContent = "Taklifnoma ulashildi.";
-        } else if (navigator.clipboard && location.protocol !== "file:") {
-          await navigator.clipboard.writeText(location.href);
+        } else if (navigator.clipboard && window.location.protocol !== "file:") {
+          await navigator.clipboard.writeText(window.location.href);
           status.textContent = "Taklifnoma havolasi nusxalandi.";
         } else {
-          status.textContent = "Sayt internetga joylangandan keyin ulashish tugmasi havolani yuboradi.";
+          status.textContent = "GitHub Pages havolasini brauzer menyusi orqali ulashing.";
         }
       } catch (error) {
-        if (error.name !== "AbortError") status.textContent = "Ulashishni yakunlab bo‘lmadi.";
+        if (error.name !== "AbortError") {
+          status.textContent = "Ulashishni yakunlab bo‘lmadi.";
+        }
       }
     });
-  }
-
-  function initRsvp() {
-    const openButton = $("#openRsvp");
-    const closeButton = $("#closeRsvp");
-
-    const openModal = () => {
-      lastFocused = document.activeElement;
-      rsvpModal.hidden = false;
-      document.body.classList.add("modal-open");
-      setTimeout(() => $("#fullName").focus(), 60);
-    };
-
-    const closeModal = () => {
-      rsvpModal.hidden = true;
-      document.body.classList.remove("modal-open");
-      formStatus.textContent = "";
-      lastFocused?.focus();
-    };
-
-    openButton.addEventListener("click", openModal);
-    closeButton.addEventListener("click", closeModal);
-    $("[data-close-modal]").addEventListener("click", closeModal);
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && !rsvpModal.hidden) closeModal();
-      if (event.key === "Tab" && !rsvpModal.hidden) trapFocus(event);
-    });
-
-    $$('input[name="children"]').forEach(input => {
-      input.addEventListener("change", () => {
-        childrenFields.hidden = !(input.checked && input.value === "yes");
-      });
-    });
-
-    rsvpForm.addEventListener("submit", event => {
-      event.preventDefault();
-      clearErrors();
-
-      let valid = true;
-      const fullName = $("#fullName");
-      if (!fullName.value.trim()) {
-        fullName.parentElement.querySelector(".field-error").textContent = "Iltimos, ismingizni kiriting.";
-        valid = false;
-      }
-
-      const attendance = $('input[name="attendance"]:checked', rsvpForm);
-      if (!attendance) {
-        $('input[name="attendance"]', rsvpForm)
-          .closest("fieldset")
-          .querySelector(".field-error").textContent = "Iltimos, qatnashishingizni belgilang.";
-        valid = false;
-      }
-
-      if (!valid) {
-        formStatus.textContent = "Majburiy maydonlarni to‘ldiring.";
-        return;
-      }
-
-      const data = new FormData(rsvpForm);
-      const payload = {
-        fullName: sanitize(String(data.get("fullName") || "")),
-        attendance: String(data.get("attendance") || ""),
-        guestCount: Number(data.get("guestCount") || 1),
-        children: String(data.get("children") || "no"),
-        childrenCount: Number(data.get("childrenCount") || 0),
-        childrenInfo: String(data.get("childrenInfo") || "").trim().slice(0, 150),
-        wish: String(data.get("wish") || "").trim().slice(0, 500),
-        savedAt: new Date().toISOString()
-      };
-
-      try {
-        localStorage.setItem("urdushbek-durdona-royal-rsvp", JSON.stringify(payload));
-        savedRsvpNotice.hidden = false;
-        formStatus.textContent = "Rahmat! Javobingiz ushbu qurilmada saqlandi.";
-        setTimeout(closeModal, 1600);
-      } catch {
-        formStatus.textContent = "Brauzer xotirasiga saqlashning imkoni bo‘lmadi.";
-      }
-    });
-
-    function clearErrors() {
-      $$(".field-error", rsvpForm).forEach(element => element.textContent = "");
-      formStatus.textContent = "";
-    }
-
-    function trapFocus(event) {
-      const focusable = $$(
-        'button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[href]',
-        rsvpModal
-      ).filter(element => element.offsetParent !== null);
-
-      if (!focusable.length) return;
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    }
-  }
-
-  function restoreRsvp() {
-    try {
-      const saved = JSON.parse(localStorage.getItem("urdushbek-durdona-royal-rsvp") || "null");
-      if (!saved) return;
-
-      savedRsvpNotice.hidden = false;
-      $("#fullName").value = saved.fullName || "";
-
-      const attendance = $(`input[name="attendance"][value="${saved.attendance}"]`);
-      if (attendance) attendance.checked = true;
-
-      $("#guestCount").value = String(saved.guestCount || 1);
-
-      const children = $(`input[name="children"][value="${saved.children || "no"}"]`);
-      if (children) children.checked = true;
-
-      childrenFields.hidden = saved.children !== "yes";
-      $('[name="childrenCount"]', rsvpForm).value = String(saved.childrenCount || 1);
-      $('[name="childrenInfo"]', rsvpForm).value = saved.childrenInfo || "";
-      $('[name="wish"]', rsvpForm).value = saved.wish || "";
-    } catch {}
   }
 
   function initProgress() {
     const progress = $("#scrollProgress");
+    if (!progress) return;
 
     const update = () => {
       const maximum = document.documentElement.scrollHeight - window.innerHeight;
@@ -437,10 +281,8 @@
 
   function initParticles() {
     const canvas = $("#particleCanvas");
-    const context = canvas.getContext("2d");
-    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (!context || reducedMotion) return;
+    const context = canvas?.getContext("2d");
+    if (!canvas || !context) return;
 
     let particles = [];
 
@@ -476,6 +318,7 @@
           particle.y = window.innerHeight + 8;
           particle.x = Math.random() * window.innerWidth;
         }
+
         if (particle.x < -8) particle.x = window.innerWidth + 8;
         if (particle.x > window.innerWidth + 8) particle.x = -8;
 
@@ -485,7 +328,7 @@
         context.fill();
       });
 
-      requestAnimationFrame(draw);
+      window.requestAnimationFrame(draw);
     }
 
     window.addEventListener("resize", resize);

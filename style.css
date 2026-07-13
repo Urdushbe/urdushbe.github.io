@@ -2888,7 +2888,7 @@ textarea:focus-visible {
 
 @media(max-width:430px) {
   .hero-section {
-    min-height: 94svh;
+    min-height: 100svh;
   }
 
   .hero-copy {

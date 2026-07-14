@@ -3035,8 +3035,8 @@ textarea:focus-visible {
 .intro-content.simplified-intro,
 .hero-section {
   width: 100%;
-  height: 100dvh;
-  min-height: 100dvh;
+  height: 100svh;
+  min-height: 100svh;
 }
 
 .royal-intro,
@@ -3065,6 +3065,7 @@ textarea:focus-visible {
 }
 
 @supports not (height: 100dvh) {
+
   .royal-intro,
   .intro-content.simplified-intro,
   .hero-section {
@@ -3725,7 +3726,7 @@ body {
   transition: opacity .8s ease, transform .8s ease;
 }
 
-.royal-intro.is-gone + .invitation .botanical-journey {
+.royal-intro.is-gone+.invitation .botanical-journey {
   opacity: .92;
   transform: none;
 }
@@ -3789,14 +3790,37 @@ body {
     radial-gradient(circle at 10% 50%, #d8aeb8 0 25%, transparent 27%);
 }
 
-.leaf-1 { --stop: 8%; }
-.bloom-1 { --stop: 18%; }
-.leaf-2 { --stop: 31%; }
-.bloom-2 { --stop: 44%; }
-.leaf-3 { --stop: 58%; }
-.bloom-3 { --stop: 70%; }
-.leaf-4 { --stop: 82%; }
-.bloom-4 { --stop: 94%; }
+.leaf-1 {
+  --stop: 8%;
+}
+
+.bloom-1 {
+  --stop: 18%;
+}
+
+.leaf-2 {
+  --stop: 31%;
+}
+
+.bloom-2 {
+  --stop: 44%;
+}
+
+.leaf-3 {
+  --stop: 58%;
+}
+
+.bloom-3 {
+  --stop: 70%;
+}
+
+.leaf-4 {
+  --stop: 82%;
+}
+
+.bloom-4 {
+  --stop: 94%;
+}
 
 .journey-leaf.active,
 .journey-bloom.active {
@@ -3868,10 +3892,21 @@ body {
   transform: none;
 }
 
-.message-section .narrow.visible>p:nth-child(2) { transition-delay: .10s; }
-.message-section .narrow.visible>p:nth-child(3) { transition-delay: .22s; }
-.message-section .narrow.visible>p:nth-child(4) { transition-delay: .34s; }
-.message-section .narrow.visible>p:nth-child(5) { transition-delay: .46s; }
+.message-section .narrow.visible>p:nth-child(2) {
+  transition-delay: .10s;
+}
+
+.message-section .narrow.visible>p:nth-child(3) {
+  transition-delay: .22s;
+}
+
+.message-section .narrow.visible>p:nth-child(4) {
+  transition-delay: .34s;
+}
+
+.message-section .narrow.visible>p:nth-child(5) {
+  transition-delay: .46s;
+}
 
 .royal-calendar[data-reveal=zoom] {
   transform: perspective(900px) rotateY(-13deg) translateY(24px) scale(.92);
@@ -3886,9 +3921,17 @@ body {
 }
 
 @keyframes pearlCardArrive {
-  0% { box-shadow: 0 4px 10px rgba(86, 66, 45, .02); }
-  55% { box-shadow: 0 24px 52px rgba(86, 66, 45, .14), 0 0 28px rgba(211, 179, 105, .16); }
-  100% { box-shadow: 0 18px 38px rgba(86, 66, 45, .08); }
+  0% {
+    box-shadow: 0 4px 10px rgba(86, 66, 45, .02);
+  }
+
+  55% {
+    box-shadow: 0 24px 52px rgba(86, 66, 45, .14), 0 0 28px rgba(211, 179, 105, .16);
+  }
+
+  100% {
+    box-shadow: 0 18px 38px rgba(86, 66, 45, .08);
+  }
 }
 
 .venue-illustration.visible .venue-photo {
@@ -3896,7 +3939,9 @@ body {
 }
 
 @keyframes venuePhotoBreathe {
-  to { transform: scale(1.045); }
+  to {
+    transform: scale(1.045);
+  }
 }
 
 .closing-section .hero-monogram {
@@ -3943,8 +3988,13 @@ body {
     width: 38px;
   }
 
-  .hero-monogram:before { right: 90%; }
-  .hero-monogram:after { left: 90%; }
+  .hero-monogram:before {
+    right: 90%;
+  }
+
+  .hero-monogram:after {
+    left: 90%;
+  }
 }
 
 @media(max-width: 390px) {
@@ -3957,7 +4007,7 @@ body {
     opacity: 0;
   }
 
-  .royal-intro.is-gone + .invitation .botanical-journey {
+  .royal-intro.is-gone+.invitation .botanical-journey {
     opacity: .76;
   }
 }
@@ -4026,13 +4076,13 @@ body {
   border-radius: 50% !important;
   color: #9a7540 !important;
   background:
-    radial-gradient(circle at 35% 25%, rgba(255,255,255,.90), transparent 22%),
+    radial-gradient(circle at 35% 25%, rgba(255, 255, 255, .90), transparent 22%),
     radial-gradient(circle, #fffaf0 0%, #eadfcd 63%, #cdbb9e 100%) !important;
   box-shadow:
-    inset 0 0 0 6px rgba(255,255,255,.55),
-    inset 0 0 0 9px rgba(148,113,51,.08),
-    0 18px 34px rgba(93,71,48,.17),
-    0 0 28px rgba(201,166,92,.26) !important;
+    inset 0 0 0 6px rgba(255, 255, 255, .55),
+    inset 0 0 0 9px rgba(148, 113, 51, .08),
+    0 18px 34px rgba(93, 71, 48, .17),
+    0 0 28px rgba(201, 166, 92, .26) !important;
 
   overflow: visible !important;
   isolation: isolate;
@@ -4065,10 +4115,10 @@ body {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 7px rgba(197,156,69,.22));
+  filter: drop-shadow(0 0 7px rgba(197, 156, 69, .22));
 }
 
-.pearl-monogram > strong {
+.pearl-monogram>strong {
   position: relative !important;
   z-index: 5 !important;
   display: flex !important;
@@ -4080,11 +4130,11 @@ body {
   color: #9a7540 !important;
   font: 600 27px/1 var(--display) !important;
   letter-spacing: .01em !important;
-  text-shadow: 0 2px 5px rgba(255,255,255,.92) !important;
+  text-shadow: 0 2px 5px rgba(255, 255, 255, .92) !important;
   transform: none !important;
 }
 
-.pearl-monogram > strong > span {
+.pearl-monogram>strong>span {
   display: inline-block !important;
   width: auto !important;
   margin: 0 !important;
@@ -4100,7 +4150,7 @@ body {
   opacity: 1 !important;
 }
 
-.pearl-monogram > strong > i {
+.pearl-monogram>strong>i {
   display: inline-block !important;
   margin: 0 5px !important;
   color: #9a7540 !important;
@@ -4115,7 +4165,7 @@ body {
   top: 52%;
   width: 56px;
   height: 25px;
-  border-top: 1px solid rgba(151,122,65,.56);
+  border-top: 1px solid rgba(151, 122, 65, .56);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -4131,21 +4181,24 @@ body {
 }
 
 @keyframes pearlMonogramGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     filter: brightness(1);
     box-shadow:
-      inset 0 0 0 6px rgba(255,255,255,.55),
-      inset 0 0 0 9px rgba(148,113,51,.08),
-      0 18px 34px rgba(93,71,48,.17),
-      0 0 24px rgba(201,166,92,.22);
+      inset 0 0 0 6px rgba(255, 255, 255, .55),
+      inset 0 0 0 9px rgba(148, 113, 51, .08),
+      0 18px 34px rgba(93, 71, 48, .17),
+      0 0 24px rgba(201, 166, 92, .22);
   }
+
   50% {
     filter: brightness(1.035);
     box-shadow:
-      inset 0 0 0 6px rgba(255,255,255,.62),
-      inset 0 0 0 9px rgba(148,113,51,.08),
-      0 20px 38px rgba(93,71,48,.19),
-      0 0 34px rgba(201,166,92,.34);
+      inset 0 0 0 6px rgba(255, 255, 255, .62),
+      inset 0 0 0 9px rgba(148, 113, 51, .08),
+      0 20px 38px rgba(93, 71, 48, .19),
+      0 0 34px rgba(201, 166, 92, .34);
   }
 }
 
@@ -4162,10 +4215,10 @@ body {
   transform: translate(-50%, -50%);
   cursor: pointer;
   box-shadow:
-    inset 0 0 0 4px rgba(255,255,255,.55),
-    inset 0 0 0 7px rgba(148,113,51,.08),
-    0 13px 25px rgba(93,71,48,.18),
-    0 0 20px rgba(201,166,92,.24) !important;
+    inset 0 0 0 4px rgba(255, 255, 255, .55),
+    inset 0 0 0 7px rgba(148, 113, 51, .08),
+    0 13px 25px rgba(93, 71, 48, .18),
+    0 0 20px rgba(201, 166, 92, .24) !important;
   animation: pearlEnvelopeBadgePulse 2.6s ease-in-out infinite !important;
 }
 
@@ -4175,11 +4228,11 @@ body {
   margin-bottom: 0 !important;
 }
 
-#royalIntro .royal-seal.pearl-monogram > strong {
+#royalIntro .royal-seal.pearl-monogram>strong {
   font-size: clamp(20px, 5.6vw, 23px) !important;
 }
 
-#royalIntro .royal-seal.pearl-monogram > strong > i {
+#royalIntro .royal-seal.pearl-monogram>strong>i {
   margin-inline: 4px !important;
 }
 
@@ -4199,10 +4252,13 @@ body {
 }
 
 @keyframes pearlEnvelopeBadgePulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
     filter: brightness(1);
   }
+
   50% {
     transform: translate(-50%, -50%) scale(1.045);
     filter: brightness(1.035);
@@ -4287,4 +4343,37 @@ body {
     font-size: clamp(34px, 9.6vw, 41px) !important;
     letter-spacing: -.04em !important;
   }
+}
+
+
+/* MOBILE SCROLL JUMP FIX */
+@media (max-width: 768px) {
+
+  .royal-intro,
+  .intro-content.simplified-intro,
+  .hero-section {
+    height: 100svh !important;
+    min-height: 100svh !important;
+  }
+
+  .hero-bg,
+  .palace-background {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    overscroll-behavior-y: none;
+  }
+}
+
+.preloader-pearl-monogram {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  animation: preloaderFloat 2.2s ease-in-out infinite;
 }

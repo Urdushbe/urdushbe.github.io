@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+<defs>
+<radialGradient id="wax" cx=".34" cy=".25" r=".82"><stop offset="0" stop-color="#a23450"/><stop offset=".58" stop-color="#5c0d20"/><stop offset="1" stop-color="#220307"/></radialGradient>
+<linearGradient id="gold" x1="0" x2="1"><stop stop-color="#986719"/><stop offset=".45" stop-color="#ffe9aa"/><stop offset="1" stop-color="#bd852a"/></linearGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<path d="M120 8C154 4 181 23 209 49c20 28 15 63 22 94-1 37-28 63-58 84-34 17-73 9-105 0-33-13-53-42-58-77C6 115 12 78 40 51 61 27 88 12 120 8Z" fill="url(#wax)"/>
+<path d="M120 25c36-2 68 21 87 50 15 31 7 68-13 96-24 29-61 39-96 27-36-10-61-39-67-75-7-37 12-72 41-91 14-5 30-7 48-7Z" fill="none" stroke="url(#gold)" stroke-width="3" filter="url(#glow)"/>
+<path d="M71 67c18-27 80-27 98 0M71 173c18 27 80 27 98 0" fill="none" stroke="#d5aa4c" stroke-width="2" opacity=".65"/>
+<path d="M78 28 91 42l29-30 29 30 13-14-5 35H83Z" fill="none" stroke="url(#gold)" stroke-width="3"/>
+<circle cx="78" cy="27" r="4" fill="#ffe9aa"/><circle cx="120" cy="11" r="4" fill="#ffe9aa"/><circle cx="162" cy="27" r="4" fill="#ffe9aa"/>
+<text x="120" y="141" text-anchor="middle" fill="url(#gold)" font-family="Cinzel,Georgia,serif" font-size="61" font-weight="600">UD</text>
+</svg>

@@ -2,15 +2,15 @@
   "use strict";
 
   const config = {
-    eventISO: "2026-08-06T18:00:00+05:00",
+    eventISO: "2026-08-06T19:00:00+05:00",
     timeline: [
-      ["17:30", "Mehmonlarni kutib olish"],
-      ["18:00", "To‘y tantanasining boshlanishi"],
-      ["18:30", "Kelin-kuyovning kirib kelishi"],
-      ["19:00", "Tabriklar va oq fotiha"],
-      ["20:00", "Bayram dasturxoni"],
-      ["21:00", "Musiqa, raqs va ko‘ngilochar dastur"]
-    ]
+  ["18:30", "Mehmonlarni kutib olish"],
+  ["19:00", "To‘y tantanasining boshlanishi"],
+  ["19:30", "Kelin-kuyovning kirib kelishi"],
+  ["20:00", "Tabriklar va oq fotiha"],
+  ["21:00", "Bayram dasturxoni"],
+  ["22:00", "Musiqa, raqs va ko‘ngilochar dastur"]
+]
   };
 
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -243,7 +243,7 @@
     button.addEventListener("click", async () => {
       const data = {
         title: "Urdushbek & Durdona — Nikoh to‘yiga taklifnoma",
-        text: "6-avgust, 2026-yil, soat 18:00. “BEK” To‘y va tantanalar maskani, Jizzax.",
+        text: "6-avgust, 2026-yil, soat 19:00. “BEK” To‘y va tantanalar maskani, Jizzax.",
         url: window.location.href
       };
 
